@@ -1,30 +1,42 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <v-app>
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+    </v-app-bar>
+
+    <v-navigation-drawer v-model="drawer" app bottom temporary>
+      <v-list nav>
+        <v-list-item>
+          <router-link :to="{ name: 'home' }">home</router-link>
+        </v-list-item>
+        <v-list-item>
+          <router-link :to="{ name: 'works' }">works</router-link>
+        </v-list-item>
+        <v-list-item>
+          <router-link :to="{ name: 'fanarts' }">fanarts</router-link>
+        </v-list-item>
+        <v-list-item>
+          <router-link :to="{ name: 'profile' }">profile</router-link>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import { defineComponent } from "vue";
 
-nav {
-  padding: 30px;
-}
+export default defineComponent({
+  name: "App",
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  data() {
+    return {
+      drawer: false,
+    };
+  },
+});
+</script>
