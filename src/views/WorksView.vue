@@ -1,40 +1,35 @@
 <template>
   <div>
-    <v-card flat>
-      <v-card-title v-text="'WORKS'" />
-      <v-card-text>
-        <section>
-          <v-row>
-            <v-col
-              v-for="item in works"
-              :key="item._id"
-              class="d-flex child-flex"
-              cols="4"
-            >
-              <v-img
-                :src="item.thumbnailImage.src"
-                aspect-ratio="1"
-                @click="selectedImage = item.image.src"
-              >
-                <template #placeholder>
-                  <v-row
-                    class="fill-height ma-0"
-                    align="center"
-                    justify="center"
-                  >
-                    <v-progress-circular indeterminate color="grey lighten-5" />
-                  </v-row>
-                </template>
-              </v-img>
-            </v-col>
-          </v-row>
+    <common-heading>
+      <span v-text="'WORKS'" />
+    </common-heading>
 
-          <div class="d-flex justify-center pt-4">
-            <v-btn>Load more</v-btn>
-          </div>
-        </section>
-      </v-card-text>
-    </v-card>
+    <section class="mt-4">
+      <v-row no-gutters>
+        <v-col
+          v-for="item in works"
+          :key="item._id"
+          class="d-flex child-flex"
+          cols="4"
+        >
+          <v-img
+            :src="item.thumbnailImage.src"
+            aspect-ratio="1"
+            @click="selectedImage = item.image.src"
+          >
+            <template #placeholder>
+              <v-row class="fill-height ma-0" align="center" justify="center">
+                <v-progress-circular indeterminate color="grey lighten-5" />
+              </v-row>
+            </template>
+          </v-img>
+        </v-col>
+      </v-row>
+
+      <div class="d-flex justify-center pt-4">
+        <v-btn>Load more</v-btn>
+      </div>
+    </section>
 
     <v-dialog v-model="dialog" @click:outside="selectedImage = ''">
       <v-card>
@@ -50,9 +45,13 @@
 import { defineComponent } from "vue";
 import { Client } from "@/core/client";
 import { Work } from "@/mock/types/work";
+import CommonHeading from "@/components/common/CommonHeading.vue";
 
 export default defineComponent({
   name: "WorksView",
+  components: {
+    CommonHeading,
+  },
   data() {
     return {
       works: [] as Work[],
