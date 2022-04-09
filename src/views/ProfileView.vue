@@ -14,7 +14,10 @@
 
     <section>
       <v-card flat>
-        <v-card-title v-text="'PROFILE'" />
+        <common-heading-02>
+          <span>PROFILE</span>
+        </common-heading-02>
+
         <v-card-text>
           <v-list-item two-line>
             <v-list-item-content>
@@ -35,7 +38,10 @@
 
     <section>
       <v-card flat>
-        <v-card-title v-text="'CONTACT'" />
+        <common-heading-02>
+          <span>CONTACT</span>
+        </common-heading-02>
+
         <v-card-text>
           <v-list-item two-line>
             <v-list-item-content>
@@ -83,9 +89,13 @@ import { defineComponent } from "vue";
 import { Client } from "@/core/client";
 import { Profile } from "@/mock/types/profile";
 import { Work } from "@/mock/types/work";
+import CommonHeading02 from "@/components/common/CommonHeading02.vue";
 
 export default defineComponent({
   name: "ProfileView",
+  components: {
+    CommonHeading02,
+  },
   data() {
     return {
       profile: {} as Profile,
