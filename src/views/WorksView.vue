@@ -43,9 +43,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Client } from "@/core/client";
+import { createNamespacedHelpers } from "vuex";
 import { Work } from "@/mock/types/work";
 import CommonHeading from "@/components/common/CommonHeading.vue";
+
+const { mapState, mapActions } = createNamespacedHelpers("works");
 
 export default defineComponent({
   name: "WorksView",
@@ -54,24 +56,22 @@ export default defineComponent({
   },
   data() {
     return {
-      works: [] as Work[],
       selectedImage: "",
     };
   },
   created() {
-    this.getWork();
+    this.fetchWorks();
   },
   computed: {
     dialog(): boolean {
       return !!this.selectedImage;
     },
+    ...mapState({
+      works: (state) => (state as any).works as Work[],
+    }),
   },
   methods: {
-    async getWork() {
-      const client = new Client();
-      const res = await client.get("work");
-      this.works = res.items as Work[];
-    },
+    ...mapActions(["fetchWorks"]),
   },
 });
 </script>
