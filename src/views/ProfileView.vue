@@ -1,6 +1,6 @@
 <template>
   <div class="pt-4">
-    <section class="d-flex justify-center">
+    <section class="d-flex justify-center mb-8">
       <v-avatar v-if="profile.iconImage.src" size="300" tile>
         <v-img :src="profile.iconImage.src">
           <template #placeholder>
