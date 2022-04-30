@@ -6,23 +6,28 @@
 
     <section class="mt-4">
       <v-row no-gutters>
-        <v-col
-          v-for="item in works"
-          :key="item._id"
-          class="d-flex child-flex"
-          cols="4"
-        >
-          <v-img
-            :src="item.thumbnailImage.src"
-            aspect-ratio="1"
-            @click="selectedImage = item.image.src"
-          >
-            <template #placeholder>
-              <v-row class="fill-height ma-0" align="center" justify="center">
-                <v-progress-circular indeterminate color="grey lighten-5" />
-              </v-row>
-            </template>
-          </v-img>
+        <v-col v-for="item in works.items" :key="item.id" cols="4">
+          <v-card flat>
+            <router-link
+              :to="{ name: 'works/work', params: { workId: item.id } }"
+            >
+              <v-img
+                :src="item.thumbnailImage.src"
+                aspect-ratio="1"
+                @click="selectedImage = item.image.src"
+              >
+                <template #placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular indeterminate color="grey lighten-5" />
+                  </v-row>
+                </template>
+              </v-img>
+            </router-link>
+          </v-card>
         </v-col>
       </v-row>
 
@@ -44,6 +49,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { createNamespacedHelpers } from "vuex";
+import { ListData } from "@/store";
 import { Work } from "@/mock/types/work";
 import CommonHeading from "@/components/common/CommonHeading.vue";
 
@@ -67,7 +73,7 @@ export default defineComponent({
       return !!this.selectedImage;
     },
     ...mapState({
-      works: (state) => (state as any).works as Work[],
+      works: (state) => (state as any).works as ListData<Work>,
     }),
   },
   methods: {

@@ -1,5 +1,6 @@
 import { Client } from "@/core/client";
 import { Module } from "vuex";
+import { ListData } from "@/store";
 import { Work } from "@/mock/types/work";
 
 type Type = {
@@ -20,7 +21,7 @@ export const works: Module<Type, any> = {
     async fetchWorks({ commit }) {
       const client = new Client();
       const res = await client.get("work");
-      commit("setWorks", res.items as Work[]);
+      commit("setWorks", res as ListData<Work>);
     },
   },
 };
