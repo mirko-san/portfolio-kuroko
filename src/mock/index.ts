@@ -18,6 +18,7 @@ const profile: Profile = {
 
 const works: Work[] = [
   {
+    id: "6d6243f1-5216-4f29-bb47-13c4254eb2b5",
     title: "example title",
     date: "2019-01-01T00:00:00.000Z",
     image: {
@@ -28,6 +29,7 @@ const works: Work[] = [
     },
   },
   {
+    id: "3548a5a6-b6fe-424e-a441-403aa033ffc3",
     title: "example title",
     date: "2020-01-01T00:00:00.000Z",
     image: {

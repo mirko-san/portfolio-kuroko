@@ -1,4 +1,5 @@
 export interface Work {
+  id: string;
   title: string;
   date: string;
   image: {
