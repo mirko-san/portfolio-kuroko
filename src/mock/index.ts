@@ -63,4 +63,10 @@ export const init = () => {
       items: works,
     },
   });
+  fetchMock.get(/work\/.+/, {
+    status: 200,
+    body: {
+      ...works[0],
+    },
+  });
 };
