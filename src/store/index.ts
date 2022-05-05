@@ -1,5 +1,6 @@
 import { InjectionKey } from "vue";
 import { createStore, Store } from "vuex";
+import { work } from "./work";
 import { works } from "./works";
 
 interface State {
@@ -25,6 +26,7 @@ export const store = createStore({
   mutations: {},
   actions: {},
   modules: {
+    work,
     works,
   },
 });
