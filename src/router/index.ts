@@ -16,6 +16,13 @@ const routes: Array<RouteRecordRaw> = [
     path: "/works",
     name: "works",
     component: () => import("@/views/WorksView.vue"),
+    children: [
+      {
+        path: "/works/:workId",
+        name: "works/work",
+        component: () => import("@/views/works/WorkView.vue"),
+      },
+    ],
   },
   {
     path: "/fanarts",
